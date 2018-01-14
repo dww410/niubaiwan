@@ -38,7 +38,7 @@ else
 end
 
 
-local version = "1.0.2"
+local version = "1.0.3"
 
 if cc and cc.exports then
     cc.exports.Version = version
@@ -47,7 +47,7 @@ else
 end
 
 
-local versionID = 1
+local versionID = 3
 
 if cc and cc.exports then
     cc.exports.ClientVerID = versionID

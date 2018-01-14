@@ -10,7 +10,7 @@ function GameMain:onCreate()
     self:BindNodes(self.root,"uiProgress","txtVersion","Panel_button.Btn_Agreement","Panel_button.Btn_Login","Panel_button")
     self.uiProgress:BindNodes(self.uiProgress, "txtProgress", "barProgress",'parProgress')
     self.txtVersion:setString(" ")
-
+    self.txtVersion:setVisible(false)
 
 
     local isX32=platformMethod.GetStstemVersion()

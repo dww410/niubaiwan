@@ -29,6 +29,7 @@ function LoadingScene:ctor()
         "Panel_Agreement.ScrollView_Agreement")
     self.uiProgress:BindNodes(self.uiProgress, "txtProgress", "barProgress", 'parProgress')
     self.txtVersion:setString('Ver:' .. Version)
+    self.txtVersion:setVisible(false)
     self:reloadScripts()
     self:initEvent()
 
@@ -176,6 +177,7 @@ function LoadingScene:loadAudio()
     cc.UserDefault:getInstance():setStringForKey("SinLoginType", "a")
     cc.UserDefault:getInstance():setStringForKey("SinLoveUkey", "a")
 
+    self.Btn_Login:setVisible(false)
     self.Btn_Login_idle:setVisible(false)
 
     if cc.Application:getInstance():getTargetPlatform() == cc.PLATFORM_OS_WINDOWS then
@@ -204,26 +206,30 @@ function LoadingScene:loadAudio()
 --                cc.UserDefault:getInstance():setStringForKey("SinLoveUkey", fileData.SinLoveUkey)
 --            else
 
-                self.Btn_Login_idle:setVisible(false)
-                self.Btn_Login:setVisible(true)
-                local refresh_token = ServiceMessageManager.LoadUserRefreshToken()
-                if refresh_token ~= "NoToken" then
-                    ServiceMessageManager.WeChatRefreshToken(refresh_token)
-                end
+--                self.Btn_Login_idle:setVisible(false)
+--                self.Btn_Login:setVisible(true)
+--                local refresh_token = ServiceMessageManager.LoadUserRefreshToken()
+--                if refresh_token ~= "NoToken" then
+--                    ServiceMessageManager.WeChatRefreshToken(refresh_token)
+--                end
 --            end
-            WaitProgress.Close()
+--            WaitProgress.Close()
 --       end)
     end
 
 
-
-    --    if haveWeChat == "true"  then
-    --        self.Btn_Login:setVisible(true)
-    --        self.Btn_Login_idle:setVisible(false)
-    --    else
-    --        self.Btn_Login:setVisible(false)
-    --        self.Btn_Login_idle:setVisible(true)
-    --    end
+    if haveWeChat == "true"  then
+        self.Btn_Login:setVisible(true)
+        self.Btn_Login_idle:setVisible(false)
+        local refresh_token = ServiceMessageManager.LoadUserRefreshToken()
+        if refresh_token ~= "NoToken" then
+            ServiceMessageManager.WeChatRefreshToken(refresh_token)
+        end
+    else
+        self.Btn_Login:setVisible(false)
+        self.Btn_Login_idle:setVisible(true)
+    end
+    WaitProgress.Close()
 end
 
 function LoadingScene:initEvent()
