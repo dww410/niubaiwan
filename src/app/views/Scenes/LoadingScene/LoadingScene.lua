@@ -217,8 +217,9 @@ function LoadingScene:loadAudio()
 --       end)
     end
 
-
-    if haveWeChat == "true"  then
+    local hasWeixin = platformMethod.isWXAppInstalled()
+    if hasWeixin == "true"  then
+        print("@@@@@@@@@@@@@@  has we chat")
         self.Btn_Login:setVisible(true)
         self.Btn_Login_idle:setVisible(false)
         local refresh_token = ServiceMessageManager.LoadUserRefreshToken()
@@ -226,6 +227,7 @@ function LoadingScene:loadAudio()
             ServiceMessageManager.WeChatRefreshToken(refresh_token)
         end
     else
+        print("@@@@@@@@@@@@@@  has no chat")
         self.Btn_Login:setVisible(false)
         self.Btn_Login_idle:setVisible(true)
     end

@@ -59,6 +59,8 @@ function MainScene:ctor()
     self:initEvent()
     self:refresh()
 
+    self.Button_Agent:setVisible(false)
+
     if cc.UserDefault:getInstance():getStringForKey("SinLoginType", "a") == "b" then
         self.MoneyBtn:setVisible(false)
         self.MoneyText:setVisible(false)
@@ -291,7 +293,11 @@ function MainScene:onEnterTransitionFinish()
 end
 
 function MainScene:setRoleInfo()
-    self.NameText:setString(PlayerManager.Player.name)
+    local name = PlayerManager.Player.name
+    if string.len(name) > 18 then
+       name = string.sub(name, 1, 18)
+    end
+    self.NameText:setString(name)
     self.IDText:setString("ID:" .. PlayerManager.Player.userName)
     self.MoneyText:setString(PlayerManager.Player.money)
     self.MoneyGoldText:setString(PlayerManager.Player.gold)

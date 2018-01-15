@@ -57,10 +57,10 @@ end
 
 if cc and cc.exports then
     cc.exports.isShowQuit = false
-    cc.exports.haveWeChat = "false"
+--    cc.exports.haveWeChat = hasWeixin
 else
     isShowQuit = false
-    haveWeChat = "false"
+--    haveWeChat = hasWeixin
 end
 
 local serverGate =
@@ -95,8 +95,8 @@ local appInfo =
 
 local gameHelpUrl =
 {
-    helpUrl = "https://fir.im/xgsf",
-    downLoadUrl = "https://fir.im/xgsf"
+    helpUrl = "http://www.niubaiwan.vip",
+    downLoadUrl = "http://www.niubaiwan.vip"
 }
 
 if cc and cc.exports then

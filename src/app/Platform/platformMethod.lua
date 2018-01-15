@@ -83,6 +83,21 @@ function platformMethod.GetNetwork()
 end
 
 --获取设备系统环境
+function platformMethod.isWXAppInstalled()
+    if targetPlatform == cc.PLATFORM_OS_ANDROID then
+        return false
+    elseif targetPlatform == cc.PLATFORM_OS_WINDOWS then
+        return false
+    else
+        local args      = {str1=str,str2=0}--参数
+        local luaoc      = require "cocos.cocos2d.luaoc"
+        local className = "UUID"--类名
+        local ok , ret  = luaoc.callStaticMethod(className ,"isWXAppInstalled",args)
+        return ret
+    end
+end
+
+--判断是否安装微信
 function platformMethod.GetStstemVersion()
     if targetPlatform == cc.PLATFORM_OS_ANDROID then
         return "32"
